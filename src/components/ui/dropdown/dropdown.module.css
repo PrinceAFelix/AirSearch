@@ -1,0 +1,42 @@
+.dropdown {
+  display: flex;
+  content-visibility: hidden;
+  border: 1px solid #000;
+  border-top: 0;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  width: 377px;
+  height: 10px;
+  transform: translate(5px, -10px);
+  transition: all 0.3s ease-in-out;
+}
+
+.ul {
+  margin: 0px;
+}
+
+.dropdown.visible {
+  z-index: 1;
+  content-visibility: auto;
+  border: 1px solid #000;
+  border-top: 0;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  transform: translate(5px, -10px);
+  height: 315px;
+  width: 377px;
+  background-color: #fff;
+  transition: all 0.5s ease-in-out;
+}
+.dropdown.visible button:hover {
+  background-color: #bebebe;
+  transition: all 0.5s ease-in-out;
+}
+
+.option_container {
+  display: block;
+  visibility: visible;
+  width: 345px;
+  transform: translate(-40px, -20px);
+  transition: all 0.6s ease-in-out;
+}

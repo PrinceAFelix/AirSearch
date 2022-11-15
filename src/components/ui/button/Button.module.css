@@ -1,0 +1,15 @@
+.Button {
+  cursor: pointer;
+  display: flex;
+  display: inline-flex;
+  align-items: center;
+  gap: 90px;
+  justify-content: space-around;
+  text-align: center;
+  width: 255px;
+  height: 40px;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  font-size: 18px;
+  font-weight: bold;
+}

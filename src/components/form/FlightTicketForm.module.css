@@ -1,0 +1,60 @@
+.form {
+  display: flex;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 45px;
+}
+
+.roundtrip {
+  margin: 0;
+  border-radius: 50px 0px 0px 50px;
+  border-right: 0.1 solid #000000;
+}
+
+.oneway {
+  border-radius: 0px 50px 50px 0px;
+  border-left: 0.1px solid #000000;
+}
+
+.roundtrip.selected,
+.oneway.selected {
+  background-color: #70707027;
+  transition: all 0.5s ease-in-out;
+}
+
+.input {
+  display: flex;
+  display: inline-flex;
+  position: relative;
+}
+
+.flighttype_select,
+.passenger_select {
+  text-align: left;
+  padding: 15px 45px 0px 45px;
+  font-size: 20px;
+  width: 380px;
+  height: 85px;
+  border-radius: 10px;
+  margin: 5px;
+  border: 1px solid #000;
+  border-bottom: none;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.passengerinfo {
+  display: flex;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.submit {
+  margin-top: 50px;
+  border-radius: 10px;
+  width: 245px;
+  height: 85px;
+  background-color: #000000;
+  color: #fff;
+  padding: 0px;
+}

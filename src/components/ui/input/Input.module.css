@@ -1,0 +1,27 @@
+.container {
+  text-align: left;
+}
+
+.label {
+  z-index: 11;
+  position: absolute;
+  top: 17px;
+  margin-left: 50px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.Input {
+  padding: 15px 45px 0px 45px;
+  font-size: 24px;
+  width: 245px;
+  height: 85px;
+  border-radius: 10px;
+  margin: 5px;
+  border: 1px solid #000;
+}
+
+.Input:focus {
+  outline: none;
+  box-shadow: none;
+}

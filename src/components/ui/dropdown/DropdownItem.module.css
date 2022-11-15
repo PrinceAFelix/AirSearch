@@ -1,0 +1,59 @@
+.options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 62px;
+  width: 350px;
+  border: 0.1px solid #bebebe;
+  transform: translate(13px, 30px);
+  margin-bottom: 10px;
+}
+
+.options .textholder {
+  width: 160px;
+  font-size: 20px;
+  color: #484848;
+}
+
+.options .textholder .amount {
+  font-size: 22px;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.options .btn {
+  cursor: pointer;
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background-color: #f1f1f1;
+}
+
+.options .btn button {
+  position: relative;
+  top: 50%;
+  width: 60px;
+  height: 60px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #000;
+  display: block;
+  background-color: #fff;
+  z-index: 10;
+}
+
+.typeBtn {
+  margin: 0 auto;
+  text-align: left;
+}
+
+.typeBtn .button {
+  height: 62px;
+  width: 280px;
+  font-size: 20px;
+  color: #484848;
+  border: none;
+  background: none;
+}

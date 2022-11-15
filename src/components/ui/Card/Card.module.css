@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: -50px;
+}
+
+.card {
+  position: relative;
+  width: 1560px;
+  height: 360px;
+  background-color: #ffffff;
+  margin-top: 350px;
+  border-radius: 50px;
+  border-top-left-radius: 0;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 0px 0px;
+  padding: 25px;
+}
+
+.label {
+  position: absolute;
+  top: 290px;
+  height: 60px;
+  width: 150px;
+  border-radius: 30px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  background-color: #ffffff;
+  text-align: center;
+  font-size: 30px;
+  padding-top: 10px;
+  font-weight: 500;
+}

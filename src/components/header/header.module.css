@@ -1,0 +1,75 @@
+.header {
+  background-color: #fff;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.h1 .bold {
+  font-weight: bold;
+}
+.h1 .normal {
+  font-weight: normal;
+}
+
+.image {
+  position: fixed;
+  align-items: center;
+  overflow: hidden;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -10;
+}
+
+.image img {
+  height: auto;
+  width: 700px;
+  object-fit: cover;
+  background-repeat: no-repeat;
+}
+
+/* .menu {
+  z-index: 2;
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  right: 0;
+  align-items: center;
+  transition: all 0.5s ease-in-out;
+}
+
+.menu_burger {
+  width: 30px;
+  height: 6px;
+  background: #fff;
+  border-radius: 5px;
+  transition: all 0.5s ease-in-out;
+}
+
+.menu_burger::before,
+.menu_burger::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 6px;
+  background: #fff;
+  border-radius: 5px;
+  transition: all 0.5s ease-in-out;
+}
+
+/*** BUTTON ANIMATION ***/
+/* .menu_burger::before {
+  transform: translate(0px, -16px);
+}
+
+.menu_burger::after {
+  transform: translate(0px, 16px);
+} */
