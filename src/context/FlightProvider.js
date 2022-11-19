@@ -7,8 +7,6 @@ const defaultState = {
     // tickettype: { roundtrip: false, oneway: false },
     // fromAirport: '',
     // toAirport: '',
-    // departureDate: new Date(),
-    // returnDate: new Date,
     passengers: {
         adult: 1,
         child: 0,
@@ -61,7 +59,7 @@ const flightReducer = (state, action) => {
         }
     }
 
-    if (action.actionType === 'TICKETTYPE') {
+    if (action.actionType === 'FLIGHTTYPE') {
         let updatedFlightType = '';
         console.log('click')
 
@@ -96,6 +94,10 @@ const flightReducer = (state, action) => {
 
 
 const FlightContextProvider = (props) => {
+    const [dates, setDates] = useState({
+        departureDate: null,
+        returnDate: null,
+    })
 
     const [flightState, dispatchFlightAction] = useReducer(flightReducer, defaultState)
 
@@ -109,9 +111,27 @@ const FlightContextProvider = (props) => {
         dispatchFlightAction({ actionType: 'REMOVE', passengerID: id })
     }
 
-    const addTicketType = (id) => {
-        dispatchFlightAction({ actionType: 'TICKETTYPE', passengerID: id })
+    const addFlightType = (id) => {
+        dispatchFlightAction({ actionType: 'FLIGHTTYPE', passengerID: id })
     }
+
+
+    const addDates = (date, dateFor) => {
+
+        console.log(date)
+
+        setDates((prev) => {
+            switch (dateFor) {
+                case 'D01':
+                    return { ...prev, departureDate: date }
+                case 'D02':
+                    return { ...prev, returnDate: date }
+                default:
+                    return { ...prev }
+            }
+        })
+    }
+
 
 
     const flightContext = {
@@ -121,8 +141,8 @@ const FlightContextProvider = (props) => {
         },
         fromAirport: '',
         toAirport: '',
-        departureDate: new Date(),
-        returnDate: new Date,
+        departureDate: dates.departureDate,
+        returnDate: dates.returnDate,
         passengers: {
             adult: flightState.passengers.adult,
             child: flightState.passengers.child,
@@ -131,9 +151,11 @@ const FlightContextProvider = (props) => {
         },
         totalPassenger: flightState.totalPassenger,
         flightType: flightState.flightType,
+        onAddDates: addDates,
         onAddPassenger: addPassenger,
         onRemovePassenger: removePassenger,
-        onAddTicketType: addTicketType,
+        onAddFlightType: addFlightType,
+
     }
 
     return <FlightContext.Provider value={flightContext}>{props.children}</FlightContext.Provider>

@@ -13,10 +13,11 @@ const FlightContext = React.createContext({
         infantsTwo: 0
     },
     totalPassenger: 1,
+    flightType: 'Economy',
+    onAddDates: () => { },
     onAddPassenger: () => { },
     onRemovePassenger: () => { },
-    onAddTicketType: () => { },
-    flightType: 'Economy',
+    onAddFlightType: () => { },
 })
 
 export default FlightContext;

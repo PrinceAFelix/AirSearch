@@ -4,29 +4,70 @@
   justify-content: center;
   position: absolute;
   width: 600px;
-  height: 500px;
+  height: 480px;
   background-color: #ffffff;
   z-index: 500;
-  top: 50%;
-  transform: translateY(-50%);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border: 1px solid #000000;
   border-radius: 25px;
 }
 
+.content {
+  display: block;
+}
+
 .months {
+  width: 550px;
+  height: 60px;
   display: flex;
   display: inline-flex;
-  padding-top: 50px;
+  align-items: center;
+  justify-content: space-around;
+  column-gap: 400px;
+  margin-top: 20px;
+  background-color: #a3cad6;
+}
+
+.year {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.label {
+  position: absolute;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.dateBtn {
+  font-size: 28px;
+  cursor: pointer;
 }
 
 .datelabel {
   display: flex;
-  gap: 50px;
+  display: inline-flex;
+  gap: 60px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.hr {
+  width: 100%;
+  margin-top: 20px;
 }
 
 .ul {
   margin: 0;
   padding: 0;
-  padding-top: 50px;
+  margin-top: 50px;
+}
+
+.dayscontainer {
+  display: grid;
+  align-self: center;
+  justify-content: center;
+  grid-template-columns: repeat(7, 75px);
+  grid-template-rows: repeat(7, 50px);
+  transform: translateY(-60px);
 }

@@ -1,0 +1,18 @@
+.button {
+  z-index: 5000;
+  background: none;
+  border: none;
+  width: 59px;
+  height: 59px;
+  font-size: 19px;
+  transition: all ease-in 0.3s;
+  text-align: center;
+}
+
+.button:hover {
+  background: #a3cad6;
+}
+
+.button:disabled {
+  background: none;
+}

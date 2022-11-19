@@ -19,9 +19,16 @@
   border-radius: 10px;
   margin: 5px;
   border: 1px solid #000;
+  text-align: left;
+  font-weight: bold;
 }
 
 .Input:focus {
   outline: none;
   box-shadow: none;
+}
+
+.Input.empty {
+  color: rgba(0, 0, 0, 0.3);
+  font-weight: 100;
 }

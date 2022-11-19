@@ -6,6 +6,8 @@ import classes from './FlightTicketForm.module.css'
 import IconsContext from "../../context/icon-context";
 import FlightContext from "../../context/flight-context";
 import DropDown from "../ui/dropdown/dropdown";
+import DateButton from "../ui/button/DateButton";
+import DateRangePicker from "../ui/daterangepicker/DateRangePicker";
 const FligthTicketForm = () => {
 
     const flightCtx = useContext(FlightContext)
@@ -20,6 +22,10 @@ const FligthTicketForm = () => {
                 passNum: false,
                 passTicket: false
             },
+            datePicker: {
+                isPickDate: false,
+                dateFor: "",
+            },
         }
     );
 
@@ -27,6 +33,17 @@ const FligthTicketForm = () => {
     const submitHandler = (e) => {
         e.preventDefault();
 
+    }
+
+    const toggleDatePicker = (dateSelected) => {
+        setIsDefault((prev) => {
+            return {
+                ...prev, datePicker: {
+                    isPickDate: !prev.datePicker.isPickDate,
+                    dateFor: dateSelected,
+                }
+            }
+        })
     }
 
 
@@ -69,10 +86,28 @@ const FligthTicketForm = () => {
 
     }
 
+    const handleAddDate = (selectedDate) => {
+
+
+        const { year, month, day, dateFor } = selectedDate
+        const date = `${year}-${month}-${day}`
+
+
+        flightCtx.onAddDates(date, dateFor)
+
+    }
+
+
+
+    const DatePicker = <div className={classes.datePicker}>
+        <DateRangePicker onClickDate={handleAddDate} dateFor={isDefault.datePicker.dateFor} />
+    </div>
+
 
 
     return (
         <form onSubmit={submitHandler}>
+
             <Card label="Flights">
                 <div className={classes.form}>
                     <div className={classes.flight_type}>
@@ -83,9 +118,23 @@ const FligthTicketForm = () => {
                     <div className={classes.input}>
                         <Input label="From" type="text" name="frominput" />
                         <Input label="To" type="text" name="toinput" />
-                        <Input label="DEPARTURE" type="date" name="departuredate" />
-                        <Input label="Return" type="date" name="returndate" />
+                        <div>
+                            <Input label="DEPARTURE" textHolder={flightCtx.departureDate} className={classes.dates} onClick={toggleDatePicker} type="button" name="departuredate" />
+                            {
+                                isDefault.datePicker.isPickDate && isDefault.datePicker.dateFor === 'D01' &&
+                                DatePicker
+                            }
+                        </div>
+                        <div>
+                            <Input label="Return" type="button" textHolder={flightCtx.returnDate} className={classes.dates} onClick={toggleDatePicker} name="returndate" />
+                            {
+                                isDefault.datePicker.isPickDate && isDefault.datePicker.dateFor === 'D02' &&
+                                DatePicker
+                            }
+                        </div>
+
                     </div>
+
 
                     <div className={classes.passengerinfo}>
                         <div className={classes.passengernum}>
@@ -99,6 +148,7 @@ const FligthTicketForm = () => {
 
                     </div>
                 </div>
+
             </Card >
             <Button type="submit" className={classes.submit} label="Search Flights" />
         </form>

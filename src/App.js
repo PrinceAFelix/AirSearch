@@ -7,9 +7,9 @@ function App() {
   return (
     <Layout>
       <div className="App">
-        <IconContextProvider>
+        {/* <IconContextProvider>
           <DateRangePicker />
-        </IconContextProvider>
+        </IconContextProvider> */}
         <Home />
       </div>
     </Layout>
