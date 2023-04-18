@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretDown, faPlus, faMinus, faX, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { faCaretDown, faPlus, faMinus, faX, faChevronLeft, faChevronRight, faLocationDot } from '@fortawesome/free-solid-svg-icons'
 
 
 const IconsContext = React.createContext({
@@ -20,6 +20,7 @@ export const IconContextProvider = (props) => {
         minus: <FontAwesomeIcon icon={faMinus} />,
         prev: <FontAwesomeIcon icon={faChevronLeft} />,
         next: <FontAwesomeIcon icon={faChevronRight} />,
+        loc: <FontAwesomeIcon icon={faLocationDot} />
     });
 
     const iconsCtx = ({
@@ -27,7 +28,8 @@ export const IconContextProvider = (props) => {
         plus: icons.plus,
         minus: icons.minus,
         prev: icons.prev,
-        next: icons.next
+        next: icons.next,
+        loc: icons.loc,
     })
 
     return <IconsContext.Provider value={iconsCtx}>{props.children}</IconsContext.Provider>

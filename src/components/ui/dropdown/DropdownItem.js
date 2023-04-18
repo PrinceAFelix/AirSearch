@@ -20,7 +20,7 @@ const DropdownItem = (props) => {
     }
 
     const handleTicketType = () => {
-        flightCtx.onAddTicketType(props.id);
+        flightCtx.onAddFlightType(props.id)
         props.onChangeType();
     }
 

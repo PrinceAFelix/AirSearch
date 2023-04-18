@@ -59,7 +59,7 @@ const DateRangePicker = (props) => {
 
 
     const [days, setDays] = useState(
-        { currentDays: DAYNUM.slice() }
+        { currentDays: DAYNUM.slice(), start: 0 }
     )
 
     let startDay = 0;
@@ -75,7 +75,9 @@ const DateRangePicker = (props) => {
 
     const getDayofWeek = (year, month) => {
         startDay = new Date(year + "-" + month + "-01").getDay() + 1;
-
+        setDays((prev) => {
+            return { ...prev, start: startDay }
+        })
 
     }
 
@@ -108,6 +110,7 @@ const DateRangePicker = (props) => {
 
     useEffect(() => {
         getDayofWeek(date.year, MONTHS[date.month]);
+        console.log(startDay)
 
         for (let i = 1; i < startDay; i++) {
             days.currentDays.unshift({ day: null })
@@ -158,12 +161,13 @@ const DateRangePicker = (props) => {
                     {
                         days.currentDays.map((d, index) => (
                             <ul className={classes.ul} key={nextId()}>
+
                                 {d.day === null ? <label htmlFor="emptyDay">{d.day}</label> :
                                     <DateButton isDisabled={
-                                        (index <= new Date().getDate() && date.month <= new Date().getMonth() && date.year <= new Date().getFullYear()) ||
+                                        (d.day <= new Date().getDate() && date.month <= new Date().getMonth() && date.year <= new Date().getFullYear()) ||
                                             (date.month < new Date().getMonth() && date.year <= new Date().getFullYear()) ||
-                                            (date.year < new Date().getFullYear())
-                                            ? true : false} onClick={handleClickDate} type={"button"} label={d.day} />}
+                                            (date.year < new Date().getFullYear()) ? true : false}
+                                        onClick={handleClickDate} type={"button"} label={d.day} />}
                             </ul>
                         ))
                     }

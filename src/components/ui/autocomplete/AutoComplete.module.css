@@ -1,0 +1,50 @@
+.autocomplete {
+  position: relative;
+  display: block;
+  display: inline-block;
+  flex-direction: row;
+}
+
+.Input {
+  padding: 15px 45px 0px 45px;
+  font-size: 24px;
+  width: 245px;
+  height: 85px;
+  border-radius: 10px;
+  margin: 5px;
+  border: 1px solid #000;
+  text-align: left;
+}
+
+.Input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.suggestions {
+  position: absolute;
+  z-index: 999;
+  left: 50%;
+  transform: translate(-50%, -10px);
+  width: 330px;
+  height: 0 auto;
+  background-color: rgb(255, 255, 255);
+  justify-content: left;
+  border: 2px solid rgb(165, 165, 165);
+  border-radius: 5px;
+}
+
+.ul {
+  padding: 0px;
+  margin: 0px;
+  height: 60px;
+}
+
+.li {
+  list-style-type: none;
+  height: 60px;
+}
+
+.li:hover {
+  background-color: #b7ecff;
+}

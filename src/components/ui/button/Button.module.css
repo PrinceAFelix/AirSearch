@@ -3,9 +3,9 @@
   display: flex;
   display: inline-flex;
   align-items: center;
-  gap: 90px;
-  justify-content: space-around;
+  justify-content: space-evenly;
   text-align: center;
+  gap: 90px;
   width: 255px;
   height: 40px;
   background-color: #ffffff;

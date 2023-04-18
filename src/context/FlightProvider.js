@@ -4,9 +4,15 @@ import FlightContext from "./flight-context"
 
 
 const defaultState = {
-    // tickettype: { roundtrip: false, oneway: false },
-    // fromAirport: '',
-    // toAirport: '',
+    ticketType: '',
+    fromAirport: {
+        code: '',
+        value: ''
+    },
+    toAirport: {
+        code: '',
+        value: ''
+    },
     passengers: {
         adult: 1,
         child: 0,
@@ -15,10 +21,27 @@ const defaultState = {
     },
     totalPassenger: 1,
     passengerId: '',
+    airport: {},
     flightType: 'Economy',
 }
 
 const flightReducer = (state, action) => {
+
+
+
+    if (action.actionType === 'TICKETTYPE') {
+
+        let ticket = action.tickets.tickets.roundtrip ? 'roundtrip' : 'oneway';
+
+        return {
+            ticketType: ticket,
+            passengers: state.passengers,
+            totalPassenger: state.totalPassenger,
+            flightType: state.flightType,
+            fromAirport: state.fromAirport,
+            toAirport: state.toAirport,
+        }
+    }
 
 
     if (action.actionType === 'ADD') {
@@ -33,10 +56,14 @@ const flightReducer = (state, action) => {
             updatedPassenger.adult + updatedPassenger.child + updatedPassenger.infantsOne + updatedPassenger.infantsTwo
         )
 
+
         return {
             passengers: updatedPassenger,
             totalPassenger: updatedTotalPassenger,
+            ticketType: state.ticketType,
             flightType: state.flightType,
+            fromAirport: state.fromAirport,
+            toAirport: state.toAirport,
         }
     }
 
@@ -56,12 +83,13 @@ const flightReducer = (state, action) => {
             passengers: updatedPassenger,
             totalPassenger: updatedTotalPassenger,
             flightType: state.flightType,
+            fromAirport: state.fromAirport,
+            toAirport: state.toAirport,
         }
     }
 
     if (action.actionType === 'FLIGHTTYPE') {
         let updatedFlightType = '';
-        console.log('click')
 
         switch (action.passengerID) {
             case 'TT1':
@@ -85,7 +113,41 @@ const flightReducer = (state, action) => {
             passengers: state.passengers,
             totalPassenger: state.totalPassenger,
             flightType: updatedFlightType,
+            fromAirport: state.fromAirport,
+            toAirport: state.toAirport,
         }
+    }
+
+    if (action.actionType === 'ADDAIRPORT') {
+
+        const airportCode = action.airport.airport.code;
+        const airportValue = `${action.airport.airport.code} ${action.airport.airport.searchCity}, ${action.airport.airport.displayProvince}`
+
+        const updatedAirport = {
+            code: airportCode,
+            value: airportValue
+        }
+        console.log(updatedAirport)
+
+
+        if (action.airport.origin === 'from') {
+            return {
+                fromAirport: updatedAirport,
+                toAirport: state.toAirport,
+                passengers: state.passengers,
+                totalPassenger: state.totalPassenger,
+                flightType: state.flightType,
+            }
+        }
+
+        return {
+            toAirport: updatedAirport,
+            fromAirport: state.fromAirport,
+            passengers: state.passengers,
+            totalPassenger: state.totalPassenger,
+            flightType: state.flightType,
+        }
+
     }
 
     return defaultState;
@@ -94,6 +156,12 @@ const flightReducer = (state, action) => {
 
 
 const FlightContextProvider = (props) => {
+
+
+    const [isSubmit, setIsSubmit] = useState({
+        submit: false,
+    })
+
     const [dates, setDates] = useState({
         departureDate: null,
         returnDate: null,
@@ -102,6 +170,14 @@ const FlightContextProvider = (props) => {
     const [flightState, dispatchFlightAction] = useReducer(flightReducer, defaultState)
 
     // const [passengernum, setPassengerNum] = useState(5);
+
+    const changeTicketType = (list) => {
+        dispatchFlightAction({ actionType: 'TICKETTYPE', tickets: list })
+    }
+
+    const addAirport = (list) => {
+        dispatchFlightAction({ actionType: 'ADDAIRPORT', airport: list })
+    }
 
     const addPassenger = (id) => {
         dispatchFlightAction({ actionType: 'ADD', passengerID: id })
@@ -115,6 +191,12 @@ const FlightContextProvider = (props) => {
         dispatchFlightAction({ actionType: 'FLIGHTTYPE', passengerID: id })
     }
 
+
+    const submitForm = () => {
+        setIsSubmit((prev) => {
+            return { ...prev, submit: true }
+        })
+    }
 
     const addDates = (date, dateFor) => {
 
@@ -130,6 +212,7 @@ const FlightContextProvider = (props) => {
                     return { ...prev }
             }
         })
+
     }
 
 
@@ -139,8 +222,9 @@ const FlightContextProvider = (props) => {
             roundtrip: false,
             oneway: false
         },
-        fromAirport: '',
-        toAirport: '',
+        namedTicketType: flightState.ticketType,
+        fromAirport: flightState.fromAirport,
+        toAirport: flightState.toAirport,
         departureDate: dates.departureDate,
         returnDate: dates.returnDate,
         passengers: {
@@ -151,6 +235,10 @@ const FlightContextProvider = (props) => {
         },
         totalPassenger: flightState.totalPassenger,
         flightType: flightState.flightType,
+        isSubmitForm: isSubmit.submit,
+        onSubmitForm: submitForm,
+        onChangeTicketType: changeTicketType,
+        onAddAirports: addAirport,
         onAddDates: addDates,
         onAddPassenger: addPassenger,
         onRemovePassenger: removePassenger,

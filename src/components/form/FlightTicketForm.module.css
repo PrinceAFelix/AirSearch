@@ -6,7 +6,6 @@
 }
 
 .roundtrip {
-  margin: 0;
   border-radius: 50px 0px 0px 50px;
   border-right: 0.1 solid #000000;
 }
@@ -24,7 +23,7 @@
 
 .input {
   display: flex;
-  display: inline-flex;
+
   position: relative;
 }
 
@@ -35,6 +34,10 @@
   width: 345px;
   height: 105px;
   cursor: text;
+}
+
+.dates.onewayinput {
+  width: 700px;
 }
 
 .datePicker {
